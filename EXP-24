@@ -1,0 +1,26 @@
+#include <stdio.h>
+#define MAX 10
+#define INF 999
+
+int main(){
+    int n,a[MAX][MAX],visited[MAX]={0},i,j,min,x,y,cost=0;
+    scanf("%d",&n);
+
+    for(i=0;i<n;i++)
+        for(j=0;j<n;j++)
+            scanf("%d",&a[i][j]);
+
+    visited[0]=1;
+
+    for(int k=0;k<n-1;k++){
+        min=INF;
+        for(i=0;i<n;i++)
+            for(j=0;j<n;j++)
+                if(visited[i] && !visited[j] && a[i][j]<min){
+                    min=a[i][j]; x=i; y=j;
+                }
+        cost+=min;
+        visited[y]=1;
+    }
+    printf("Cost=%d",cost);
+}
